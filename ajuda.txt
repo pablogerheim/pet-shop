@@ -15,3 +15,5 @@ CREATE TABLE animais (
     proprietario_id INT NOT NULL
 )
 
+
+leitura e escrita SQL
