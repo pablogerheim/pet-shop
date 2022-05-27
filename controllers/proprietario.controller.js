@@ -31,7 +31,7 @@ async function update(req, res, next) {
 async function exclude(req, res, next) {
     try {
         if (!req.params.id) {
-            throw new Error("Name e Telefone são obrigatórios.");
+            throw new Error("ID é obrigatório.");
         }
         proprietario = await proprietarioService.exclude(req.params.id);
         res.send(proprietario);
