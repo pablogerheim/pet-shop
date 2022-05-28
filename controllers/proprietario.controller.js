@@ -4,7 +4,7 @@ async function create(req, res, next) {
     try {
         let proprietario = req.body;
         if (!proprietario.name || proprietario.telefone == null) {
-            throw new Error("Name e Telefone são obrigatórios.");
+            throw new Error("Nome e Telefone são obrigatórios.");
         }
         proprietario = await proprietarioService.create(proprietario);
         res.send(proprietario);
@@ -17,8 +17,8 @@ async function create(req, res, next) {
 async function update(req, res, next) {
     try {
         let proprietario = req.body;
-        if (!proprietario.name || proprietario.telefone == null) {
-            throw new Error("Name e Telefone são obrigatórios.");
+        if (!proprietario.name || proprietario.telefone == null || proprietario.proprietario_id == null) {
+            throw new Error("Nome, Telefone e ID são obrigatórios.");
         }
         proprietario = await proprietarioService.update(proprietario);
         res.send(proprietario);
@@ -33,7 +33,7 @@ async function exclude(req, res, next) {
         if (!req.params.id) {
             throw new Error("ID é obrigatório.");
         }
-        proprietario = await proprietarioService.exclude(req.params.id);
+        let proprietario = await proprietarioService.exclude(req.params.id);
         res.send(proprietario);
         logger.info(`DELETE /proprietario - ${JSON.stringify(proprietario)}`);
     } catch (err) {
@@ -43,7 +43,7 @@ async function exclude(req, res, next) {
 
 async function print(req, res, next) {
     try {
-        proprietario = await proprietarioService.print(req.params.id);
+        let proprietario = await proprietarioService.print(req.params.id);
         res.send(proprietario);
         logger.info(`PRINT /proprietario - ${JSON.stringify(proprietario)}`);
     } catch (err) {

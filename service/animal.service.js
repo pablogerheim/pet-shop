@@ -1,10 +1,10 @@
 import animalRepository from "../repository/animal.repository.js";
 
-async function create({ name, telefone }) {
-    return await animalRepository.create({ name, telefone })
+async function create({ name, tipo, proprietario_id }) {
+    return await animalRepository.create(name, tipo, proprietario_id )
 }
-async function update({ name, telefone }) {
-    return await animalRepository.update({ name, telefone })
+async function update({ name, tipo, animal_id, proprietario_id }) {
+    return await animalRepository.update(name, tipo, animal_id, proprietario_id )
 }
 async function exclude(id) {
     return await animalRepository.exclude(id)

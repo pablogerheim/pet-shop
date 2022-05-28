@@ -1,6 +1,7 @@
 import express from "express";
 import winston from "winston";
 import proprietarioRoute from "./routes/proprietario.routes.js"
+import animalRoute from "./routes/animal.routes.js"
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { swaggerDocument } from "./doc.js"
@@ -37,10 +38,10 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //public
 app.use("/proprietario", proprietarioRoute);
-app.use("/animal", proprietarioRoute);
+app.use("/animal", animalRoute);
 
 app.use((err, req, res, next) => {
-    logger.error(`${req.method} ${req.baseUrl} - ${arr.message}`)
+    logger.error(`${req.method} ${req.baseUrl} - ${err.message}`)
     res.status(400).send({ error: err.message })
 })
 

@@ -3,8 +3,8 @@ import animalService from "../service/animal.service.js";
 async function create(req, res, next) {
     try {
         let animal = req.body;
-        if (!animal.name || animal.tipo == null || proprietario_id == null) {
-            throw new Error("Name, Tipo e proprietário_id são obrigatórios.");
+        if (!animal.name || animal.tipo == null || animal.proprietario_id == null) {
+            throw new Error("Nome, Tipo são obrigatórios.");
         }
         animal = await animalService.create(animal);
         res.send(animal);
@@ -17,8 +17,8 @@ async function create(req, res, next) {
 async function update(req, res, next) {
     try {
         let animal = req.body;
-        if (!animal.name || animal.tipo == null || proprietario_id == null) {
-            throw new Error("Name, Tipo e proprietário_id são obrigatórios.");
+        if (!animal.name || animal.tipo == null || animal.animal_id == null || animal.proprietario_id == null) {
+            throw new Error("Nome, Tipo e ID são obrigatórios.");
         }
         animal = await animalService.update(animal);
         res.send(animal);
@@ -33,7 +33,7 @@ async function exclude(req, res, next) {
         if (!req.params.id) {
             throw new Error("ID é obrigatório.");
         }
-        animal = await animalService.exclude(req.params.id);
+        let animal = await animalService.exclude(req.params.id);
         res.send(animal);
         logger.info(`DELETE /animal - ${JSON.stringify(animal)}`);
     } catch (err) {
@@ -43,7 +43,7 @@ async function exclude(req, res, next) {
 
 async function print(req, res, next) {
     try {
-        animal = await animalService.print(req.params.id);
+        let animal = await animalService.print(req.params.id);
         res.send(animal);
         logger.info(`PRINT /animal - ${JSON.stringify(animal)}`);
     } catch (err) {
