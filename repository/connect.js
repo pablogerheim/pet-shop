@@ -5,7 +5,7 @@ async function connect() {
         return global.connection.connect()
     }
     const pool = new pg.Pool({
-        connectionString: "postgres://jxskguer:uCoQ_3J2csVhqaoo0CBO7NfezyLsj6OP@kesavan.db.elephantsql.com/jxskguer"
+        connectionString: "postgres://muopdjnz:Pcol_pGvVtX4DKQmvqEzQjv9QKAff9oH@kesavan.db.elephantsql.com/muopdjnz"
     })
     global.connection = pool
     return pool.connect()

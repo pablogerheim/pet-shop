@@ -43,7 +43,7 @@ async function exclude(req, res, next) {
 
 async function print(req, res, next) {
     try {
-        let animal = await animalService.print(req.params.id);
+        let animal = await animalService.print(req);
         res.send(animal);
         logger.info(`PRINT /animal - ${JSON.stringify(animal)}`);
     } catch (err) {
