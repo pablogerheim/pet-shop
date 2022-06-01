@@ -1,21 +1,22 @@
 {
-  "name": "my-bank-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "pg": "^8.7.3",
-    "swagger-ui-express": "^4.3.0",
-    "winston": "^3.3.3"
-  }
+    "name": "petshop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "pg": "^8.7.3",
+        "sequelize": "^6.20.1",
+        "swagger-ui-express": "^4.3.0",
+        "winston": "^3.3.3"
+    }
 }

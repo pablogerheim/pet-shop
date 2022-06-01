@@ -3,7 +3,7 @@ import animalService from "../service/animal.service.js";
 async function create(req, res, next) {
     try {
         let animal = req.body;
-        if (!animal.name || animal.tipo == null || animal.proprietario_id == null) {
+        if (!animal.nome == null || animal.tipo == null || animal.proprietarioId == null) {
             throw new Error("Nome, Tipo são obrigatórios.");
         }
         animal = await animalService.create(animal);
@@ -17,7 +17,7 @@ async function create(req, res, next) {
 async function update(req, res, next) {
     try {
         let animal = req.body;
-        if (!animal.name || animal.tipo == null || animal.animal_id == null || animal.proprietario_id == null) {
+        if (!animal.nome == null || animal.tipo == null || animal.animalId == null || animal.proprietarioId == null) {
             throw new Error("Nome, Tipo e ID são obrigatórios.");
         }
         animal = await animalService.update(animal);

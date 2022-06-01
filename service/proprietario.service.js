@@ -1,14 +1,14 @@
 import proprietarioRepository from "../repository/proprietario.repository.js";
 import animalRepository from "../repository/animal.repository.js";
 
-async function create({ name, telefone }) {
-    return await proprietarioRepository.create(name, telefone)
+async function create(proprietario) {
+    return await proprietarioRepository.create(proprietario)
 }
-async function update({ name, telefone, proprietario_id }) {
-    return await proprietarioRepository.update(name, telefone, proprietario_id)
+async function update(proprietario) {
+    return await proprietarioRepository.update(proprietario)
 }
 async function exclude(id) {
-    let animalProp = await animalRepository.printByProprietario(id)
+    let animalProp = await animalRepository.printByPropId(id)
     if (animalProp) { throw new Error("Esse proprietario tem animais."); }
     return await proprietarioRepository.exclude(id)
 }

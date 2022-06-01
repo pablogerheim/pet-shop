@@ -1,73 +1,62 @@
-import { connect } from "./connect.js";
+import Animal from "../models/animal.models.js"
 
 
-async function create(name, tipo, proprietario_id) {
-    console.log(name)
-    console.log(tipo)
-    console.log(proprietario_id)
-    const conn = await connect();
+async function create(animal) {
     try {
-        const sql = 'INSERT INTO animais (nome, tipo, proprietario_id) VALUES ($1, $2, $3) RETURNING *'
-        const values = [name, tipo, proprietario_id]
-        const res = await conn.query(sql, values)
-        return res.rows[0]
+        return await Animal.create(animal)
     } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
-async function update(name, tipo, animal_id, proprietario_id) {
-    const conn = await connect();
+async function update(animal) {
     try {
-        const sql = 'UPDATE animais SET nome = $1, tipo = $2, proprietario_id = $4 WHERE animal_id = $3 RETURNING *'
-        const values = [name, tipo, animal_id, proprietario_id]
-        const res = await conn.query(sql, values)
-        return res.rows[0]
+        await Animal.update(animal, {
+            where: {
+                animalId: animal.animalId
+            }
+        })
+        return await print(animal.animalId)
     } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
 async function exclude(id) {
-    const conn = await connect();
     try {
-        await conn.query("DELETE FROM animais WHERE animal_id = $1", [id])
+        return await Animal.destroy({
+            where: {
+                animalId: id
+            }
+        })
     } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
 async function print(id) {
-    const conn = await connect();
     try {
         if (id) {
-            const res = await conn.query("SELECT * FROM animais WHERE animal_id = $1", [id])
-            return res.rows[0]
+            return await Animal.findByPk(id)
+        } else {
+            return await Animal.findAll()
         }
-        const res = await conn.query("SELECT * FROM animais")
-        return res.rows
     } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
-async function printByProprietario(id) {
-    const conn = await connect();
+async function printByPropId(id) {
     try {
-        const res = await conn.query("SELECT * FROM animais WHERE proprietario_id = $1", [id])
-        return res.rows[0]
+
+        return await Animal.findOne({
+            where: {
+                proprietarioId: id
+            }
+        })
+
     } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
@@ -77,5 +66,5 @@ export default {
     update,
     exclude,
     print,
-    printByProprietario
+    printByPropId
 }

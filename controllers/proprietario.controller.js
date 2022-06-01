@@ -3,7 +3,7 @@ import proprietarioService from "../service/proprietario.service.js";
 async function create(req, res, next) {
     try {
         let proprietario = req.body;
-        if (!proprietario.name || proprietario.telefone == null) {
+        if (!proprietario.nome || proprietario.telefone == null) {
             throw new Error("Nome e Telefone são obrigatórios.");
         }
         proprietario = await proprietarioService.create(proprietario);
@@ -17,7 +17,7 @@ async function create(req, res, next) {
 async function update(req, res, next) {
     try {
         let proprietario = req.body;
-        if (!proprietario.name || proprietario.telefone == null || proprietario.proprietario_id == null) {
+        if (!proprietario.nome || proprietario.telefone == null || proprietario.proprietarioId == null) {
             throw new Error("Nome, Telefone e ID são obrigatórios.");
         }
         proprietario = await proprietarioService.update(proprietario);

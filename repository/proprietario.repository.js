@@ -1,61 +1,51 @@
-import { connect } from "./connect.js";
+import Proprietario from "../models/proprietario.models.js"
 
 
-async function create( name, telefone ) {
-    const conn = await connect();
-    try{
-        const sql = 'INSERT INTO proprietarios (nome, telefone) VALUES ($1, $2) RETURNING *'
-        const values = [name, telefone]
-        const res = await conn.query(sql, values)
-        return res.rows[0]
-    }catch(err){
+async function create(proprietario) {
+    try {
+        return await Proprietario.create(proprietario)
+    } catch (err) {
         throw err
-    }finally{
-        conn.release()
     }
 }
 
-async function update( name, telefone, id ) {
-    const conn = await connect();
+async function update(proprietario) {
     try {
-        const sql = 'UPDATE proprietarios SET nome = $1, telefone = $2 WHERE proprietario_id = $3 RETURNING *'
-        const values = [name, telefone, id]
-        const res = await conn.query(sql, values)
-        return res.rows[0]
-    } catch(err) {
+        await Proprietario.update(proprietario, {
+            where: {
+                proprietarioId: proprietario.proprietarioId
+            }
+        })
+        return await print(proprietario.proprietarioId)
+    } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
 async function exclude(id) {
-    const conn = await connect();
     try {
-        await conn.query("DELETE FROM proprietarios WHERE proprietario_id = $1", [id])
-        return `proprietario ${id} deletado`
-    } catch(err) {
+        return await Proprietario.destroy({
+            where: {
+                proprietarioId: id
+            }
+        })
+    } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
 
-async function print( id ) {
-    const conn = await connect();
+async function print(id) {
     try {
         if (id) {
-            const res = await conn.query("SELECT * FROM proprietarios WHERE proprietario_id = $1",[id])
-            return res.rows[0]
+            return await Proprietario.findByPk(id)
+        } else {
+            return await Proprietario.findAll()
         }
-        const res = await conn.query("SELECT * FROM proprietarios")
-        return res.rows
-    } catch(err) {
+    } catch (err) {
         throw err
-    } finally {
-        conn.release()
     }
 }
+
 
 
 
