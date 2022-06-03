@@ -1,25 +1,25 @@
 import connect from "../repository/Postgreconnect.js";
 import sequelize from "sequelize";
-import proprietario from "./proprietario.models.js";
+import animals from "./animal.models.js";
 
 
-const animal = connect.define('animais', {
-    animalId: {
+const servico = connect.define('servico', {
+    servicoId: {
         type: sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nome: {
+    descricao: {
         type: sequelize.STRING,
         allowNull: false
     },
-    tipo: {
+    valor: {
         type: sequelize.STRING,
         allowNull: false
     }
 }, { underscored: true })
 
-animal.belongsTo(proprietario, { foreignKey: "proprietarioId" })
+servico.belongsTo(animals, { foreignKey: "animalId" })
 
-export default animal
+export default servico

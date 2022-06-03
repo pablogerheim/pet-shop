@@ -1,6 +1,5 @@
 import Animal from "../models/animal.models.js"
 
-
 async function create(animal) {
     try {
         return await Animal.create(animal)

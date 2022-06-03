@@ -2,6 +2,8 @@ import express from "express";
 import winston from "winston";
 import proprietarioRoute from "./routes/proprietario.routes.js"
 import animalRoute from "./routes/animal.routes.js"
+import servicoRoute from "./routes/servico.routes.js"
+import blogRoute from './routes/blog.routes.js'
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { swaggerDocument } from "./doc.js"
@@ -39,6 +41,8 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //public
 app.use("/proprietario", proprietarioRoute);
 app.use("/animal", animalRoute);
+app.use("/servico", servicoRoute);
+app.use("/blog", blogRoute);
 
 app.use((err, req, res, next) => {
     logger.error(`${req.method} ${req.baseUrl} - ${err.message}`)

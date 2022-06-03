@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 
 const sequelize = new Sequelize(
-    "your postgre key", {
+    "sua poutgre chave", {
         dialect: "postgres",
         define: {
             timestamps: false

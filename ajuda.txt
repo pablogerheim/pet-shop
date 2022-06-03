@@ -1,7 +1,5 @@
 index - routes - controller - servce - repository
 
-ELECT * FROM proprietarios” e um “SELECT * FROM animais”
-
 CREATE TABLE proprietarios (  
     proprietario_id SERIAL PRIMARY KEY,
     nome VARCHAR NOT NULL,
@@ -16,8 +14,40 @@ CREATE TABLE animais (
     CONSTRAINT fk_proprietarios FOREIGN KEY (proprietario_id) REFERENCES proprietarios (proprietario_id)
 )
 
+CREATE TABLE servico ( 
+    servico_id SERIAL PRIMARY KEY,
+    animal_id INT NOT NULL,
+    descricao VARCHAR NOT NULL,
+    valor VARCHAR NOT NULL,
+    CONSTRAINT fk_animal FOREIGN KEY (animal_id) REFERENCES animais (animal_id)
+)
 
-leitura e escrita SQL
+criar serviço
+pequsar todos os serviços
+pesquisar os servicos de 1 proprietario
+---
+mongoDB
+estrutura{
+    titulo:...
+    conteudo:...
+        comentarios:[
+            {nome:...
+            conteudo:...
+            }
+        ]
+}
 
-chave
+cria post
+Consulta de todos os posts (vem tudo)
+--
+cadastra comentario
+
+
+
+
+
+chave postgres
 postgres://muopdjnz:Pcol_pGvVtX4DKQmvqEzQjv9QKAff9oH@kesavan.db.elephantsql.com/muopdjnz
+
+chave mongo
+mongodb+srv://pablo:123qweasd@cluster0.yn1zdjf.mongodb.net/test

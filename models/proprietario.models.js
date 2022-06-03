@@ -1,4 +1,4 @@
-import connect from "../repository/connect.js";
+import connect from "../repository/Postgreconnect.js";
 import sequelize from "sequelize";
 
 const proprietario = connect.define('proprietarios', {
