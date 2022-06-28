@@ -15,7 +15,6 @@ async function create(post) {
 async function print() {
     const conn = mongconnect();
     try {
-        console.log("ola")
         await conn.connect()
         return await conn.db("petshop").collection('blog').find({}).toArray()
     } catch (err) {
@@ -39,7 +38,6 @@ async function printbyTitle(titulo) {
 
 async function update(post) {
     const conn = mongconnect();
-    console.log(post)
     try {
         await conn.connect()
         await conn.db("petshop").collection('blog').updateOne({ titulo: 'post' }, { $set: {...post } })

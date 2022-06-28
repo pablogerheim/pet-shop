@@ -1,6 +1,5 @@
 import Proprietario from "../models/proprietario.models.js"
 
-
 async function create(proprietario) {
     try {
         return await Proprietario.create(proprietario)
@@ -45,9 +44,6 @@ async function print(id) {
         throw err
     }
 }
-
-
-
 
 export default {
     create,
