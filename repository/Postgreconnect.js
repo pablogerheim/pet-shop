@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 
 const sequelize = new Sequelize(
-    "postgres://pvlrexpm:LKERgPGODLuoxmS0ty9VSxAJeyV77bb3@kesavan.db.elephantsql.com/pvlrexpm", {
+    "postgres://pvlrexpm:keyOfDatabase", {
         dialect: "postgres",
         define: {
             timestamps: false

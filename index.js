@@ -5,9 +5,6 @@ import animalRoute from "./routes/animal.routes.js"
 import servicoRoute from "./routes/servico.routes.js"
 import blogRoute from './routes/blog.routes.js'
 import cors from "cors";
-import swaggerUi from "swagger-ui-express";
-import { swaggerDocument } from "./doc.js"
-
 
 const { combine, timestamp, label, printf } = winston.format;
 const myFormat = printf(({ level, message, label, timestamp }) => {
@@ -34,11 +31,8 @@ const corsOptions = {
 const app = express();
 app.use(express.json());
 app.use(cors(corsOptions));
-//app.use(express.static("public"));
-app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(express.static("public"));
 
-
-//public
 app.use("/proprietario", proprietarioRoute);
 app.use("/animal", animalRoute);
 app.use("/servico", servicoRoute);

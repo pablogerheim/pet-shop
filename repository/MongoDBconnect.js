@@ -1,7 +1,7 @@
 import mongconnect from 'mongodb'
 
 function getClinet() {
-    const uri = "mongodb+srv://pablo1:123qweasd@livraria.4wvs9zi.mongodb.net/test"
+    const uri = "key of database mongodb"
     return new mongconnect.MongoClient(uri)
 }
 
